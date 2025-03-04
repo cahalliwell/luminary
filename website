@@ -1,0 +1,52 @@
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Mail, Calendar, Star } from "lucide-react";
+
+export default function Luminary() {
+  const [events] = useState([
+    {
+      title: "An Evening with Tamal Ray",
+      date: "April 12, 2025",
+      location: "The Ritz, London",
+      description: "An intimate cooking masterclass followed by a candlelit dinner and speech.",
+      price: "£2,500",
+    },
+    {
+      title: "Luxury Wine Tasting with Masters",
+      date: "May 5, 2025",
+      location: "Blenheim Palace, Oxfordshire",
+      description: "A guided experience through the finest wines with world-renowned sommeliers.",
+      price: "£3,200",
+    },
+  ]);
+
+  return (
+    <div className="min-h-screen bg-gray-100 text-gray-900">
+      <header className="p-6 bg-white shadow-md text-center text-2xl font-semibold">
+        LUMINARY – Curated Masterclass Experiences
+      </header>
+      <section className="p-10 max-w-5xl mx-auto">
+        <h2 className="text-3xl font-bold mb-6">Upcoming Events</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {events.map((event, index) => (
+            <Card key={index} className="p-6 shadow-lg bg-white">
+              <CardContent>
+                <h3 className="text-xl font-bold mb-2">{event.title}</h3>
+                <p className="flex items-center mb-1"><Calendar className="w-4 h-4 mr-2" /> {event.date}</p>
+                <p className="flex items-center mb-1"><Star className="w-4 h-4 mr-2" /> {event.location}</p>
+                <p className="mb-3">{event.description}</p>
+                <p className="font-semibold text-lg">{event.price}</p>
+                <Button className="mt-4 w-full">Reserve Now</Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+      <footer className="p-6 text-center bg-white shadow-md mt-10">
+        <p className="mb-3">Join our exclusive mailing list</p>
+        <Button><Mail className="w-4 h-4 mr-2" /> Subscribe</Button>
+      </footer>
+    </div>
+  );
+}
